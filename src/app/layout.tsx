@@ -4,6 +4,8 @@ import { Roboto } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
+import { Toaster } from "@/components/ui/sonner";
+
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
@@ -72,7 +74,10 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <html lang="en">
-      <body className={cn(roboto.className)}>{children}</body>
+      <body className={cn(roboto.className)}>
+        <Toaster richColors />
+        {children}
+      </body>
     </html>
   );
 }
