@@ -6,6 +6,9 @@ import {
   ALLOW_MIME_TYPES,
   MIME_TYPE_MAP,
 } from "@/lib/extensions";
+import { downloadFile } from "@/lib/utils";
+import { convertPngToJpeg } from "@/lib/png";
+import { convertJpgJpegToPng } from "@/lib/jpg-jpeg";
 
 export function useDropzone() {
   const [file, setFile] = useState<File | null>(null);
@@ -33,7 +36,6 @@ export function useDropzone() {
 
       if (!ALLOW_MIME_TYPES.includes(mimetype)) {
         toast.error(`Not allowed type ${mimetype} for now`);
-
         return clear();
       }
 
@@ -51,7 +53,41 @@ export function useDropzone() {
     value: ext,
   }));
 
-  const handleConvert = () => {};
+  const handleConvert = async () => {
+    if (!file || !targetExtension) {
+      toast.error("Please select a file and a target extension.");
+      return;
+    }
+
+    try {
+      let convertedFile: File | null = null;
+
+      if (
+        fileExtension === "png" &&
+        (targetExtension === "jpg" || targetExtension === "jpeg")
+      ) {
+        convertedFile = await convertPngToJpeg({
+          file,
+          extension: targetExtension,
+        });
+      }
+
+      if (
+        (fileExtension === "jpg" || fileExtension === "jpeg") &&
+        targetExtension === "png"
+      ) {
+        convertedFile = await convertJpgJpegToPng({ file });
+      }
+
+      downloadFile(convertedFile);
+      toast.success("Converting file successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error converting file.");
+    }
+
+    return clear();
+  };
 
   return {
     handleFileChange,
