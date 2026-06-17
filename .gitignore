@@ -1,0 +1,19 @@
+# DEPENDENCIES
+/node_modules
+pnpm-lock.yaml
+
+# NEXT.JS
+/.next/
+
+# PRODUCTION
+/build
+
+# DEBUG
+.pnpm-debug.log*
+
+# ENV VARIABLES
+.env*
+
+# TYPESCRIPT
+*.tsbuildinfo
+next-env.d.ts

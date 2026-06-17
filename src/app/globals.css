@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-surface: var(--background-surface);
+  --color-background-code: var(--background-code);
+  --color-background-overlay: var(--background-overlay);
+
+  --color-primary: var(--violet-bright);
+  --color-primary-base: var(--violet-base);
+  --color-primary-deep: var(--violet-deep);
+  --color-primary-muted: var(--violet-muted);
+
+  --color-secondary: var(--blue-base);
+  --color-secondary-deep: var(--blue-deep);
+  --color-secondary-bright: var(--blue-bright);
+  --color-secondary-muted: var(--blue-muted);
+
+  --color-accent: var(--cyan-base);
+  --color-accent-muted: var(--cyan-muted);
+
+  --color-info: var(--sky-base);
+  --color-info-accent: var(--sky-accent);
+  --color-info-muted: var(--sky-muted);
+
+  --color-foreground: var(--text-primary);
+  --color-muted-foreground: var(--text-secondary);
+  --color-ghost-foreground: var(--text-muted);
+  --color-inverse-foreground: var(--text-inverse);
+
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-primary: var(--border-violet);
+  --color-border-secondary: var(--border-blue);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-destructive: var(--destructive);
+}
+
+:root {
+  --background: #0f172a;
+  --background-surface: #1e293b;
+  --background-code: #020617;
+  --background-overlay: rgba(15, 23, 42, 0.85);
+
+  --violet-base: #8b5cf6;
+  --violet-bright: #a78bfa;
+  --violet-deep: #6d28d9;
+  --violet-muted: rgba(139, 92, 246, 0.15);
+
+  --blue-base: #3b82f6;
+  --blue-bright: #60a5fa;
+  --blue-deep: #1d4ed8;
+  --blue-muted: rgba(59, 130, 246, 0.15);
+
+  --cyan-base: #06b6d4;
+  --cyan-muted: rgba(6, 182, 212, 0.15);
+
+  --sky-base: #0ea5e9;
+  --sky-accent: #38bdf8;
+  --sky-muted: rgba(14, 165, 233, 0.15);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  --border: #334155;
+  --border-subtle: #1e293b;
+  --border-violet: #8b5cf6;
+  --border-blue: #3b82f6;
+
+  --radius: 0.5rem;
+  --destructive: #ef4444;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply min-h-screen flex flex-col bg-background text-foreground;
+  }
+  h1 {
+    @apply text-4xl font-bold tracking-tight leading-tight;
+  }
+  h2 {
+    @apply text-3xl font-semibold tracking-tight leading-snug;
+  }
+  h3 {
+    @apply text-2xl font-semibold leading-snug;
+  }
+  h4 {
+    @apply text-xl font-medium leading-normal;
+  }
+  p,
+  input {
+    @apply text-xs md:text-sm lg:text-base;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+}
