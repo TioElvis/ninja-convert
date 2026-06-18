@@ -23,12 +23,11 @@ export function Dropzone() {
     dynamicItems,
     targetExtension,
     handleConvert,
-    fileExtension,
   } = useDropzone();
 
   return (
     <Card className="w-full">
-      <CardContent className="flex items-center gap-2">
+      <CardContent className="flex items-center gap-2 overflow-x-auto">
         <Input
           type="file"
           id="custom-file-input"
@@ -45,8 +44,6 @@ export function Dropzone() {
             </label>
           }
         />
-        {!file && <span>Select file</span>}
-        {file && <span>{fileExtension}</span>}
         <span>to</span>
         <Select
           value={targetExtension}

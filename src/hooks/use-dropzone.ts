@@ -132,7 +132,6 @@ export function useDropzone() {
     handleFileChange,
     fileInputRef,
     file,
-    fileExtension,
     setTargetExtension,
     dynamicItems,
     targetExtension,
