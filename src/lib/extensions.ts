@@ -6,6 +6,7 @@ export const MIME_TYPE_MAP: Record<string, string> = {
   "image/svg+xml": "svg",
   "image/bmp": "bmp",
   "image/x-icon": "ico",
+  "image/vnd.microsoft.icon": "ico",
   "image/tiff": "tiff",
   "image/avif": "avif",
   "image/heic": "heic",
@@ -59,13 +60,22 @@ export const MIME_TYPE_MAP: Record<string, string> = {
   "application/vnd.amazon.ebook": "azw",
 };
 
-export const ALLOW_MIME_TYPES = ["png", "jpeg", "jpg", "webp", "avif", "svg"];
+export const ALLOW_MIME_TYPES = [
+  "png",
+  "jpeg",
+  "jpg",
+  "webp",
+  "avif",
+  "svg",
+  "ico",
+];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
-  png: ["jpeg", "jpg", "webp", "avif", "svg", "pdf"],
-  jpeg: ["png", "webp", "avif", "pdf", "svg"],
-  jpg: ["png", "webp", "avif", "svg", "pdf"],
-  webp: ["png", "jpeg", "jpg", "avif", "svg", "pdf"],
-  avif: ["png", "jpeg", "jpg", "webp", "svg", "pdf"],
-  svg: ["png", "jpeg", "jpg", "webp", "avif", "pdf"],
+  png: ["jpeg", "jpg", "webp", "avif", "svg", "ico", "pdf"],
+  jpeg: ["png", "webp", "avif", "pdf", "svg", "ico"],
+  jpg: ["png", "webp", "avif", "svg", "pdf", "ico"],
+  webp: ["png", "jpeg", "jpg", "avif", "svg", "pdf", "ico"],
+  avif: ["png", "jpeg", "jpg", "webp", "svg", "pdf", "ico"],
+  svg: ["png", "jpeg", "jpg", "webp", "avif", "pdf", "ico"],
+  ico: ["png", "jpeg", "jpg", "webp", "avif", "svg", "pdf"],
 };
