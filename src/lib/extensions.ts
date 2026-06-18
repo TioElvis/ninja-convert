@@ -61,21 +61,21 @@ export const MIME_TYPE_MAP: Record<string, string> = {
 };
 
 export const ALLOW_MIME_TYPES = [
-  "png",
+  "avif",
+  "ico",
   "jpeg",
   "jpg",
-  "webp",
-  "avif",
+  "png",
   "svg",
-  "ico",
+  "webp",
 ];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
-  png: ["jpeg", "jpg", "webp", "avif", "svg", "ico", "pdf"],
-  jpeg: ["png", "webp", "avif", "pdf", "svg", "ico"],
-  jpg: ["png", "webp", "avif", "svg", "pdf", "ico"],
-  webp: ["png", "jpeg", "jpg", "avif", "svg", "pdf", "ico"],
-  avif: ["png", "jpeg", "jpg", "webp", "svg", "pdf", "ico"],
-  svg: ["png", "jpeg", "jpg", "webp", "avif", "pdf", "ico"],
-  ico: ["png", "jpeg", "jpg", "webp", "avif", "svg", "pdf"],
+  avif: ["ico", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
+  ico: ["avif", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
+  jpeg: ["avif", "ico", "pdf", "png", "svg", "webp"],
+  jpg: ["avif", "ico", "pdf", "png", "svg", "webp"],
+  png: ["avif", "ico", "jpeg", "jpg", "pdf", "svg", "webp"],
+  svg: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "webp"],
+  webp: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg"],
 };
