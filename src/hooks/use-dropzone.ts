@@ -30,6 +30,8 @@ import {
 import { useFiles } from "./use-files";
 
 export function useDropzone() {
+  const [loading, setLoading] = useState(false);
+
   const [file, setFile] = useState<File | null>(null);
   const [targetExtension, setTargetExtension] = useState<string | null>(null);
 
@@ -38,6 +40,7 @@ export function useDropzone() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const clear = () => {
+    setLoading(false);
     setFile(null);
     setTargetExtension("");
 
@@ -75,6 +78,8 @@ export function useDropzone() {
   }));
 
   const handleConvert = async () => {
+    setLoading(true);
+
     if (!file || !targetExtension) {
       toast.error("Please select a file and a target extension.");
       return;
@@ -136,5 +141,6 @@ export function useDropzone() {
     dynamicItems,
     targetExtension,
     handleConvert,
+    loading,
   };
 }

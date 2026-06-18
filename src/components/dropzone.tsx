@@ -23,12 +23,14 @@ export function Dropzone() {
     dynamicItems,
     targetExtension,
     handleConvert,
+    loading,
   } = useDropzone();
 
   return (
     <Card className="w-full">
       <CardContent className="flex items-center gap-2 overflow-x-auto">
         <Input
+          disabled={loading}
           type="file"
           id="custom-file-input"
           className="hidden"
@@ -48,7 +50,7 @@ export function Dropzone() {
         <Select
           value={targetExtension}
           onValueChange={(e) => setTargetExtension(e)}
-          disabled={!file || dynamicItems.length === 0}>
+          disabled={!file || dynamicItems.length === 0 || loading}>
           <SelectTrigger>
             <SelectValue placeholder="Select" />
           </SelectTrigger>
@@ -65,7 +67,9 @@ export function Dropzone() {
         </Select>
         <Button
           onClick={() => handleConvert()}
-          disabled={!file || dynamicItems.length === 0 || !targetExtension}>
+          disabled={
+            !file || dynamicItems.length === 0 || !targetExtension || loading
+          }>
           Convert
         </Button>
       </CardContent>
