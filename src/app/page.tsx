@@ -21,6 +21,12 @@ export default function Page() {
       <MaxWidthWrapper className="flex-1 flex flex-col items-center py-4 gap-4">
         <div className="w-full">
           <h1 className="text-primary">Convert your files without problems</h1>
+          <p className="text-muted-foreground">
+            Convert your files quickly and securely — no uploads, no servers.
+            Your files stay in your browser and are automatically removed when
+            you close or refresh the page, so your data never leaves your
+            device.
+          </p>
         </div>
         <FilesProvider>
           <Dropzone />
