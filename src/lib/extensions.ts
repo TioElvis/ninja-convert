@@ -61,9 +61,9 @@ export const MIME_TYPE_MAP: Record<string, string> = {
 export const ALLOW_MIME_TYPES = ["png", "jpeg", "jpg", "webp", "avif"];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
-  png: ["jpeg", "jpg", "webp", "avif"],
-  jpeg: ["png", "webp", "avif"],
-  jpg: ["png", "webp", "avif"],
-  webp: ["png", "jpeg", "jpg", "avif"],
-  avif: ["png", "jpeg", "jpg", "webp"],
+  png: ["jpeg", "jpg", "webp", "avif", "pdf"],
+  jpeg: ["png", "webp", "avif", "pdf"],
+  jpg: ["png", "webp", "avif", "pdf"],
+  webp: ["png", "jpeg", "jpg", "avif", "pdf"],
+  avif: ["png", "jpeg", "jpg", "webp", "pdf"],
 };

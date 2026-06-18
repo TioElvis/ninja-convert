@@ -26,6 +26,7 @@ import {
   convertAvifToPng,
   convertAvifToWebp,
 } from "@/lib/avif";
+import { convertImageToPdf } from "@/lib/pdf";
 
 import { useFiles } from "./use-files";
 
@@ -91,6 +92,8 @@ export function useDropzone() {
       "png-jpeg": () => convertPngToJpgJpeg({ file, extension: "jpeg" }),
       "png-webp": () => convertPngToWebp({ file }),
       "png-avif": () => convertPngToAvif({ file }),
+      "png-pdf": () => convertImageToPdf({ file }),
+
       // JPG/JPEG
       "jpg-png": () => convertJpgJpegToPng({ file }),
       "jpeg-png": () => convertJpgJpegToPng({ file }),
@@ -98,16 +101,22 @@ export function useDropzone() {
       "jpeg-webp": () => convertJpgJpegToWebp({ file }),
       "jpg-avif": () => convertJpgJpegToAvif({ file }),
       "jpeg-avif": () => convertJpgJpegToAvif({ file }),
+      "jpg-pdf": () => convertImageToPdf({ file }),
+      "jpeg-pdf": () => convertImageToPdf({ file }),
+
       // WEBP
       "webp-png": () => convertWebpToPng({ file }),
       "webp-jpg": () => convertWebpToJpgJpeg({ file, extension: "jpg" }),
       "webp-jpeg": () => convertWebpToJpgJpeg({ file, extension: "jpeg" }),
       "webp-avif": () => convertWebpToAvif({ file }),
+      "webp-pdf": () => convertImageToPdf({ file }),
+
       // AVIF
       "avif-png": () => convertAvifToPng({ file }),
       "avif-jpg": () => convertAvifToJpgJpeg({ file, extension: "jpg" }),
       "avif-jpeg": () => convertAvifToJpgJpeg({ file, extension: "jpeg" }),
       "avif-webp": () => convertAvifToWebp({ file }),
+      "avif-pdf": () => convertImageToPdf({ file }),
     };
 
     const strategyKey = `${fileExtension}-${targetExtension}`;
