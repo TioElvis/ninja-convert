@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { Fragment } from "react/jsx-runtime";
 
+import { FilesProvider } from "@/context/files";
+
 import { Dropzone } from "@/components/dropzone";
-import { Card, CardContent } from "@/components/ui/card";
+import { FilesTable } from "@/components/files-table";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
 export default function Page() {
@@ -20,11 +22,10 @@ export default function Page() {
         <div className="w-full">
           <h1 className="text-primary">Convert your files without problems</h1>
         </div>
-        <Dropzone />
-        <Card className="w-full flex-1">
-          <CardContent>{/* TODO: Table */}</CardContent>
-        </Card>
-        <div className="w-full"></div>
+        <FilesProvider>
+          <Dropzone />
+          <FilesTable />
+        </FilesProvider>
       </MaxWidthWrapper>
     </Fragment>
   );

@@ -6,7 +6,6 @@ import {
   ALLOW_MIME_TYPES,
   MIME_TYPE_MAP,
 } from "@/lib/extensions";
-import { downloadFile } from "@/lib/utils";
 import {
   convertJpgJpegToAvif,
   convertJpgJpegToPng,
@@ -28,9 +27,13 @@ import {
   convertAvifToWebp,
 } from "@/lib/avif";
 
+import { useFiles } from "./use-files";
+
 export function useDropzone() {
   const [file, setFile] = useState<File | null>(null);
   const [targetExtension, setTargetExtension] = useState<string | null>(null);
+
+  const { setFiles } = useFiles();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -115,7 +118,7 @@ export function useDropzone() {
     try {
       const convertedFile = await convertAction();
 
-      downloadFile(convertedFile);
+      setFiles((prev) => [...prev, convertedFile]);
       toast.success("Converting file successfully");
     } catch (error) {
       console.error(error);
