@@ -69,6 +69,7 @@ export const ALLOW_MIME_TYPES = [
   "svg",
   "webp",
   "xpm",
+  "pdf",
 ];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
@@ -80,4 +81,7 @@ export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
   svg: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "webp", "xpm"],
   webp: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg", "xpm"],
   xpm: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
+  pdf: ["avif", "ico", "jpeg", "jpg", "png", "svg", "webp", "xpm"],
+  doc: ["avif", "ico", "jpeg", "jpg", "png", "svg", "webp", "pdf", "xpm"],
+  docx: ["avif", "ico", "jpeg", "jpg", "png", "svg", "webp", "pdf", "xpm"],
 };
