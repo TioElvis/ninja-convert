@@ -68,14 +68,16 @@ export const ALLOW_MIME_TYPES = [
   "png",
   "svg",
   "webp",
+  "xpm",
 ];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
-  avif: ["ico", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
-  ico: ["avif", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
-  jpeg: ["avif", "ico", "pdf", "png", "svg", "webp"],
-  jpg: ["avif", "ico", "pdf", "png", "svg", "webp"],
-  png: ["avif", "ico", "jpeg", "jpg", "pdf", "svg", "webp"],
-  svg: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "webp"],
-  webp: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg"],
+  avif: ["ico", "jpeg", "jpg", "pdf", "png", "svg", "webp", "xpm"],
+  ico: ["avif", "jpeg", "jpg", "pdf", "png", "svg", "webp", "xpm"],
+  jpeg: ["avif", "ico", "pdf", "png", "svg", "webp", "xpm"],
+  jpg: ["avif", "ico", "pdf", "png", "svg", "webp", "xpm"],
+  png: ["avif", "ico", "jpeg", "jpg", "pdf", "svg", "webp", "xpm"],
+  svg: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "webp", "xpm"],
+  webp: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg", "xpm"],
+  xpm: ["avif", "ico", "jpeg", "jpg", "pdf", "png", "svg", "webp"],
 };
