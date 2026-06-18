@@ -7,8 +7,26 @@ import {
   MIME_TYPE_MAP,
 } from "@/lib/extensions";
 import { downloadFile } from "@/lib/utils";
-import { convertPngToJpeg } from "@/lib/png";
-import { convertJpgJpegToPng } from "@/lib/jpg-jpeg";
+import {
+  convertJpgJpegToAvif,
+  convertJpgJpegToPng,
+  convertJpgJpegToWebp,
+} from "@/lib/jpg-jpeg";
+import {
+  convertPngToAvif,
+  convertPngToJpgJpeg,
+  convertPngToWebp,
+} from "@/lib/png";
+import {
+  convertWebpToAvif,
+  convertWebpToJpgJpeg,
+  convertWebpToPng,
+} from "@/lib/webp";
+import {
+  convertAvifToJpgJpeg,
+  convertAvifToPng,
+  convertAvifToWebp,
+} from "@/lib/avif";
 
 export function useDropzone() {
   const [file, setFile] = useState<File | null>(null);
@@ -59,25 +77,43 @@ export function useDropzone() {
       return;
     }
 
+    const conversionStrategies: Record<string, () => Promise<File>> = {
+      // PNG
+      "png-jpg": () => convertPngToJpgJpeg({ file, extension: "jpg" }),
+      "png-jpeg": () => convertPngToJpgJpeg({ file, extension: "jpeg" }),
+      "png-webp": () => convertPngToWebp({ file }),
+      "png-avif": () => convertPngToAvif({ file }),
+      // JPG/JPEG
+      "jpg-png": () => convertJpgJpegToPng({ file }),
+      "jpeg-png": () => convertJpgJpegToPng({ file }),
+      "jpg-webp": () => convertJpgJpegToWebp({ file }),
+      "jpeg-webp": () => convertJpgJpegToWebp({ file }),
+      "jpg-avif": () => convertJpgJpegToAvif({ file }),
+      "jpeg-avif": () => convertJpgJpegToAvif({ file }),
+      // WEBP
+      "webp-png": () => convertWebpToPng({ file }),
+      "webp-jpg": () => convertWebpToJpgJpeg({ file, extension: "jpg" }),
+      "webp-jpeg": () => convertWebpToJpgJpeg({ file, extension: "jpeg" }),
+      "webp-avif": () => convertWebpToAvif({ file }),
+      // AVIF
+      "avif-png": () => convertAvifToPng({ file }),
+      "avif-jpg": () => convertAvifToJpgJpeg({ file, extension: "jpg" }),
+      "avif-jpeg": () => convertAvifToJpgJpeg({ file, extension: "jpeg" }),
+      "avif-webp": () => convertAvifToWebp({ file }),
+    };
+
+    const strategyKey = `${fileExtension}-${targetExtension}`;
+    const convertAction = conversionStrategies[strategyKey];
+
+    if (!convertAction) {
+      toast.error(
+        `Conversion from ${fileExtension} to ${targetExtension} is not supported.`,
+      );
+      return clear();
+    }
+
     try {
-      let convertedFile: File | null = null;
-
-      if (
-        fileExtension === "png" &&
-        (targetExtension === "jpg" || targetExtension === "jpeg")
-      ) {
-        convertedFile = await convertPngToJpeg({
-          file,
-          extension: targetExtension,
-        });
-      }
-
-      if (
-        (fileExtension === "jpg" || fileExtension === "jpeg") &&
-        targetExtension === "png"
-      ) {
-        convertedFile = await convertJpgJpegToPng({ file });
-      }
+      const convertedFile = await convertAction();
 
       downloadFile(convertedFile);
       toast.success("Converting file successfully");

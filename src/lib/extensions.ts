@@ -58,10 +58,12 @@ export const MIME_TYPE_MAP: Record<string, string> = {
   "application/epub+zip": "epub",
   "application/vnd.amazon.ebook": "azw",
 };
-export const ALLOW_MIME_TYPES = ["png", "jpeg", "jpg"];
+export const ALLOW_MIME_TYPES = ["png", "jpeg", "jpg", "webp", "avif"];
 
 export const ALLOW_CONVERT_MIME_TYPES: Record<string, string[]> = {
-  png: ["jpeg", "jpg"],
-  jpeg: ["png"],
-  jpg: ["png"],
+  png: ["jpeg", "jpg", "webp", "avif"],
+  jpeg: ["png", "webp", "avif"],
+  jpg: ["png", "webp", "avif"],
+  webp: ["png", "jpeg", "jpg", "avif"],
+  avif: ["png", "jpeg", "jpg", "webp"],
 };
