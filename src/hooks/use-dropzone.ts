@@ -6,7 +6,8 @@ import {
   ALLOW_MIME_TYPES,
   MIME_TYPE_MAP,
 } from "@/lib/extensions";
-import { convertImageToPdf } from "@/lib/pdf";
+import { convertImageToPdf, convertPdfToDocx } from "@/lib/pdf";
+import { convertDocxToPdf, convertImageToDocx } from "@/lib/docx";
 import { convertImageFormat, TARGET_IMG_EXTENSION } from "@/lib/img";
 
 import { useFiles } from "./use-files";
@@ -70,8 +71,32 @@ export function useDropzone() {
     try {
       let convertedFile: File;
 
-      if (targetExtension === "pdf") {
+      if (
+        targetExtension === "pdf" &&
+        TARGET_IMG_EXTENSION.includes(fileExtension)
+      ) {
         convertedFile = await convertImageToPdf({ file });
+      }
+
+      if (
+        targetExtension === "pdf" &&
+        (fileExtension === "doc" || fileExtension === "docx")
+      ) {
+        convertedFile = await convertPdfToDocx({ file });
+      }
+
+      if (
+        (targetExtension === "doc" || targetExtension === "docx") &&
+        TARGET_IMG_EXTENSION.includes(fileExtension)
+      ) {
+        convertedFile = await convertImageToDocx({ file });
+      }
+
+      if (
+        (targetExtension === "doc" || targetExtension === "docx") &&
+        fileExtension === "pdf"
+      ) {
+        convertedFile = await convertDocxToPdf({ file });
       }
 
       if (TARGET_IMG_EXTENSION.includes(targetExtension)) {
